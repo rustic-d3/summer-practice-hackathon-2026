@@ -1,0 +1,428 @@
+// Colors
+$dark-bg: #0d0d0d;
+$card-bg: rgba(255, 255, 255, 0.05);
+$lime: #c5ff4a;
+$cream: #f5f5f5;
+$glass-border: rgba(255, 255, 255, 0.1);
+
+.dash-root {
+  min-height: 100vh;
+  background-color: $dark-bg;
+  color: $cream;
+  font-family: "Inter", sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+// ── BACKGROUND BLOBS ──
+.dash-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+
+  .dash-blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    filter: blur(80px);
+    border-radius: 50%;
+    opacity: 0.15;
+
+    &-1 {
+      top: -100px;
+      right: -100px;
+      background: $lime;
+    }
+    &-2 {
+      bottom: -100px;
+      left: -100px;
+      background: #6366f1;
+    }
+  }
+}
+
+// ── HEADER ──
+.dash-header {
+  height: 80px;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $glass-border;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  position: relative;
+
+  .dash-brand {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $lime;
+  }
+
+  .dash-nav-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .dash-nav-img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 1px solid $lime;
+      object-fit: cover;
+    }
+
+    .dash-logout {
+      background: transparent;
+      border: 1px solid rgba($cream, 0.3);
+      color: $cream;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        border-color: $lime;
+        color: $lime;
+      }
+    }
+  }
+}
+
+// ── MAIN LAYOUT ──
+.dash-main {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.dash-profile-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 50px;
+
+  .dash-avatar-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: $card-bg;
+    border: 1px solid $glass-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .dash-avatar-placeholder {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: $lime;
+    }
+  }
+
+  .dash-greeting {
+    .dash-label {
+      color: rgba($cream, 0.5);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .dash-username {
+      font-size: 2rem;
+      margin: 5px 0;
+      color: $lime;
+    }
+    .dash-email {
+      color: rgba($cream, 0.4);
+      font-size: 0.85rem;
+    }
+    .dash-bio {
+      margin-top: 10px;
+      max-width: 500px;
+      color: rgba($cream, 0.8);
+    }
+  }
+}
+
+// ── TABS & CONTROLS ──
+.dash-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+  .dash-tabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 5px;
+    border-radius: 12px;
+
+    .dash-tab {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: rgba($cream, 0.5);
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+
+      &.active {
+        background: $lime;
+        color: $dark-bg;
+      }
+      &:hover:not(.active) {
+        color: $cream;
+      }
+    }
+  }
+
+  .create-event-btn {
+    background: rgba($lime, 0.1);
+    border: 1px solid $lime;
+    color: $lime;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+
+    &:hover {
+      background: $lime;
+      color: $dark-bg;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ── GRID & CARDS ──
+.dash-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background: $card-bg;
+  border: 1px solid $glass-border;
+  border-radius: 20px;
+  padding: 20px;
+  transition: 0.3s;
+  backdrop-filter: blur(5px);
+
+  &:hover {
+    border-color: rgba($lime, 0.4);
+    transform: translateY(-5px);
+  }
+
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .event-tag {
+      color: $lime;
+      font-weight: bold;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    .event-skill {
+      font-size: 0.75rem;
+      color: rgba($cream, 0.4);
+    }
+  }
+
+  h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+  }
+  p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: rgba($cream, 0.6);
+  }
+
+  .join-btn {
+    width: 100%;
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid rgba($lime, 0.3);
+    color: $lime;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover {
+      background: rgba($lime, 0.1);
+      border-color: $lime;
+    }
+  }
+}
+
+.dash-item-card {
+  background: $card-bg;
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid $glass-border;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  .item-name {
+    font-weight: 600;
+  }
+  .item-id {
+    color: rgba($cream, 0.3);
+    font-size: 0.8rem;
+  }
+}
+
+// ── MODAL ──
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  .modal-card {
+    background: #141414;
+    border: 1px solid rgba($lime, 0.2);
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      h2 {
+        margin: 0;
+        color: $lime;
+        font-size: 1.5rem;
+      }
+      button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+
+    form {
+      .form-group {
+        margin-bottom: 20px;
+        label {
+          display: block;
+          font-size: 0.8rem;
+          color: rgba($cream, 0.5);
+          margin-bottom: 8px;
+        }
+        input,
+        select {
+          width: 100%;
+          padding: 12px;
+          background: #1f1f1f;
+          border: 1px solid #333;
+          border-radius: 10px;
+          color: white;
+          outline: none;
+          &:focus {
+            border-color: $lime;
+          }
+        }
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .submit-event-btn {
+        width: 100%;
+        padding: 15px;
+        background: $lime;
+        color: $dark-bg;
+        border: none;
+        border-radius: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        margin-top: 10px;
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+}
+.event-card--mine {
+  border-color: rgba(#b6f500, 0.2);
+  background: rgba(#b6f500, 0.03);
+}
+
+.mine-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(#b6f500, 0.5);
+}
+
+.dash-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.dash-badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(#b6f500, 0.25);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(#fffadc, 0.55);
+}
+
+.dash-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-empty-icon {
+  font-size: 3rem;
+  margin: 0;
+}
+.dash-empty-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: rgba(#fffadc, 0.6);
+  margin: 0;
+}
+.dash-empty-sub {
+  font-size: 0.84rem;
+  color: rgba(#fffadc, 0.3);
+  margin: 0 0 16px;
+}

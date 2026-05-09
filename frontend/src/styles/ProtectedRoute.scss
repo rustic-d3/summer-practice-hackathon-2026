@@ -1,0 +1,39 @@
+$lime: #b6f500;
+$dark: #1a1f0e;
+$cream: #fffadc;
+
+.pr-loading {
+  min-height: 100vh;
+  background: $dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.pr-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba($lime, 0.15);
+  border-top-color: $lime;
+  border-radius: 50%;
+  animation: pr-spin 0.75s linear infinite;
+  box-shadow: 0 0 20px rgba($lime, 0.2);
+}
+
+.pr-loading-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba($cream, 0.3);
+  margin: 0;
+}
+
+@keyframes pr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
